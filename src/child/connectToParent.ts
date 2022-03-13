@@ -95,7 +95,9 @@ export default <TCallSender extends object = CallSender>(
           return;
         }
 
-        if (event.source !== parent || !event.data) {
+        const validSource = event.source === null || event.source === parent;
+
+        if (!validSource || !event.data) {
           return;
         }
 

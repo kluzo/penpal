@@ -77,8 +77,10 @@ export default (
       return new Promise((resolve, reject) => {
         const id = generateId();
         const handleMessageEvent = (event: MessageEvent) => {
+          const validSource = event.source === null || event.source === remote;
+
           if (
-            event.source !== remote ||
+            !validSource ||
             event.data.penpal !== MessageType.Reply ||
             event.data.id !== id
           ) {
